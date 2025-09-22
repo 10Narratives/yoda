@@ -1,0 +1,10 @@
+services:
+  gateway:
+    build: ./gateway
+    container_name: yoda-api-gateway
+    restart: unless-stopped
+
+  dispatcher:
+    build: ./dispatcher
+    container_name: yoda-dispatcher
+    restart: unless-stopped
