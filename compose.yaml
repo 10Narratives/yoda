@@ -8,3 +8,19 @@ services:
     build: ./dispatcher
     container_name: yoda-dispatcher
     restart: unless-stopped
+
+  statedb:
+    image: postgres:17
+    container_name: yoda-statedb
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password 
+      POSTGRES_DB: statedb
+    ports:
+      - "5432:5432"
+    volumes:
+      - statedb_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  statedb_data:
