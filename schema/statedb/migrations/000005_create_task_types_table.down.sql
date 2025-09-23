@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS yoda.task_types CASCADE;
