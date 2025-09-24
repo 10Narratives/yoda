@@ -3,24 +3,51 @@ services:
     build: ./gateway
     container_name: yoda-api-gateway
     restart: unless-stopped
+    networks:
+    - yoda_network
 
   dispatcher:
     build: ./dispatcher
     container_name: yoda-dispatcher
     restart: unless-stopped
+    networks:
+    - yoda_network
 
   statedb:
     image: postgres:17
     container_name: yoda-statedb
     environment:
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: password 
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: statedb
     ports:
-      - "5432:5432"
+    - "5432:5432"
     volumes:
-      - statedb_data:/var/lib/postgresql/data
+    - statedb_data:/var/lib/postgresql/data
     restart: unless-stopped
+    networks:
+    - yoda_network
+
+  logsdb:
+    image: clickhouse/clickhouse-server:latest
+    container_name: yoda-logsdb
+    ports:
+    - "8123:8123"
+    - "9000:9000"
+    volumes:
+    - logsdb_data:/var/lib/clickhouse
+    environment:
+    - CLICKHOUSE_USER=user
+    - CLICKHOUSE_PASSWORD=password
+    - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
+    restart: unless-stopped
+    networks:
+    - yoda_network
 
 volumes:
   statedb_data:
+  logsdb_data:
+
+networks:
+  yoda_network:
+    driver: bridge
