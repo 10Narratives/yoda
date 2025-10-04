@@ -1,0 +1,81 @@
+name: 🐞 Bug Report
+description: Report an issue affecting the application
+title: "[BUG] Brief problem description"
+labels: [bug, needs-triage, priority:high]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before submitting:**
+        - [ ] The issue isn't already reported in [open issues](link-to-issues)
+        - [ ] You're using the latest version
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: What's happening and why is it problematic?
+      placeholder: |
+        Example: Application crashes with 500 error when clicking "Save"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Clear sequence to trigger the bug
+      value: |
+        1. 
+        2. 
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      value: |
+        Example: Data should save without errors
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      value: |
+        Example: "Internal Server Error" appears
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Application Version
+      placeholder: v2.4.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser/OS/device details
+      placeholder: |
+        - OS: Windows 11
+        - Browser: Chrome 120
+        - Device: Desktop
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attachments
+    attributes:
+      label: Additional Information
+      options:
+        - label: Screenshots/videos attached
+          required: false
+        - label: Error logs included
+          required: false

@@ -1,0 +1,79 @@
+name: ✨ Feature Request
+description: Propose new functionality for the project
+title: "[FEAT] Short feature name"
+labels: [enhancement, proposal]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before submitting:**
+        - [ ] Similar feature isn't requested in [open issues](link-to-issues)
+        - [ ] You've reviewed the [project roadmap](link-to-roadmap)
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this feature important? What problems does it solve?
+      placeholder: |
+        Example: Users frequently request PDF export for offline work
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: Detailed explanation of required functionality
+      value: |
+        Required capabilities:
+        - "Export to PDF" button in interface
+        - Page format selection (A4, Letter)
+        - Configurable export fields
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: How will we know the feature is implemented correctly?
+      placeholder: |
+        1. Export works for all data types
+        2. Generated PDF matches template
+        3. Usage documentation exists
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Were other implementation approaches considered?
+      placeholder: |
+        - Use library X instead of Y
+        - Implement via third-party service
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      options:
+        - Low (convenience)
+        - Medium (useful)
+        - High (important)
+        - Critical (blocker)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attachments
+    attributes:
+      label: Additional Resources
+      options:
+        - label: Interface mockups attached
+          required: false
+        - label: Reference examples from other projects
+          required: false
