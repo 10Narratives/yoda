@@ -5,21 +5,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-  ci:
-    name: Lint, Test, Build
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go-version: ['1.23', '1.24']
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Go ${{ matrix.go-version }}
+      - name: Set up Go 1.25
         uses: actions/setup-go@v4
         with:
-          go-version: ${{ matrix.go-version }}
+          go-version: '1.25'
           cache: true
 
       - name: Install dependencies
@@ -43,8 +39,40 @@ jobs:
           go mod tidy
           git diff --exit-code go.mod go.sum
 
-      - name: Run tests
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.25
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.25'
+          cache: true
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Run unit tests
         run: go test -v -race -covermode=atomic -coverprofile=coverage.txt ./...
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.25
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.25'
+          cache: true
+
+      - name: Install dependencies
+        run: go mod download
 
       - name: Build binary
         run: go build -o app ./cmd/app/
