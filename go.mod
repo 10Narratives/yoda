@@ -1,3 +1,3 @@
-module github.com/10Narratives/golang-project-template
+module github.com/10Narratives/yoda
 
-go 1.24.5
+go 1.25.1

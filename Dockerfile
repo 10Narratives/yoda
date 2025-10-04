@@ -1,4 +1,4 @@
-FROM golang:1.24-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build \
     -installsuffix cgo \
     -ldflags="-s -w" \
     -o main \
-    ./cmd/app/main.go
+    ./cmd/dispatcher/main.go
 
 FROM alpine:latest AS final
 
